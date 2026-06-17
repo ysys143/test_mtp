@@ -1,0 +1,14 @@
+[12:18:18] ===== 26B-orig : google/gemma-4-26B-A4B-it (spec=none image=vllm/vllm-openai:nightly) =====
+[12:18:18]   loading...
+[12:24:17]   HEALTHY (72x5s)
+[12:24:17]   KV_total=855836  (Maximum concurrency for 131,072 tokens per request: 6.53x)
+73696 MiB
+[26B-orig] model=google/gemma-4-26B-A4B-it KV_total=855836 temp=0 max_tok=1024
+  [ctx=8K single] ptok=8005 TTFT=4515ms decode_tok/s=110.4 out=915
+  [ctx=8K conc=118] done=118/118 agg_out_tok/s=670.5 wall=163.9s lat_avg=120715ms lat_p99=163825ms
+  [ctx=123K single] ptok=122994 TTFT=44771ms decode_tok/s=64.3 out=966
+  [ctx=123K conc=8] done=8/8 agg_out_tok/s=19.4 wall=402.1s lat_avg=382237ms lat_p99=402037ms
+  [spec] non-MTP
+[12:34:57]   stopped, GPU 해제 대기...
+[12:34:57]   GPU freed (0MB)
+[12:34:57] ######## 26B-orig DONE ########

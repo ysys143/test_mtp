@@ -1,0 +1,7 @@
+/home/opscheck/run_ns_bf16.sh: line 3: 103603 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[bf16-base] model=google/gemma-4-31B-it decode_tok/s=40.7 (out=512, prefill=35ms) NON-MTP
+/home/opscheck/run_ns_bf16.sh: line 3: 105055 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[bf16-mtp-g4] model=google/gemma-4-31B-it decode_tok/s=118.3 acceptance=56.0% (out=512, prefill=54ms)
+/home/opscheck/run_ns_bf16.sh: line 3: 106802 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[bf16-mtp-g8] model=google/gemma-4-31B-it decode_tok/s=122.7 acceptance=33.2% (out=512, prefill=58ms)
+######## NS BF16 DONE ########

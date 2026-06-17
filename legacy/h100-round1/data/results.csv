@@ -1,0 +1,25 @@
+model,active_params,precision,technique,tp_short_toks,tp_8k_toks,accuracy_pct,accuracy_source,notes
+gemma-26B-A4B,4B-MoE,bf16,AR,199.8,187.7,100,measured,
+gemma-26B-A4B,4B-MoE,bf16,MTP,322.9,312.9,100,inferred-lossless,gamma4
+gemma-26B-A4B,4B-MoE,bf16,diffusion,615.5,,86.7,measured,
+gemma-26B-A4B,4B-MoE,fp8,AR,226.0,211.6,100,measured,
+gemma-26B-A4B,4B-MoE,fp8,MTP,390.3,337.9,100,inferred-lossless,gamma4
+gemma-26B-A4B,4B-MoE,fp8,diffusion,864.4,,90.0,measured,fastest overall
+gemma-26B-A4B,4B-MoE,int8,AR,218.2,200.9,100,measured,
+gemma-26B-A4B,4B-MoE,int8,MTP,381.6,331.2,100,inferred-lossless,gamma4
+gemma-26B-A4B,4B-MoE,int8,diffusion,618.4,573.3,93.3,measured,best diffusion accuracy
+gemma-31B,31B-dense,bf16,AR,40.5,37.8,100,measured,
+gemma-31B,31B-dense,bf16,MTP,,,,,OOM on single H100 80GB; cudagraph KV insufficient; eager-only not comparable (see docs/04 #8)
+gemma-31B,31B-dense,fp8,AR,67.4,61.8,100,measured,
+gemma-31B,31B-dense,fp8,MTP,178.1,150.2,100,inferred-lossless,gamma4; 2.64x vs base
+gemma-31B,31B-dense,qat-w4a16,AR,89.6,70.7,100,measured,
+gemma-31B,31B-dense,qat-w4a16,MTP,213.7,143.1,100,inferred-lossless,gamma4; 2.38x vs base
+gemma-12B,12B-dense,bf16,AR,82.4,78.1,100,measured,
+gemma-12B,12B-dense,bf16,MTP,186.5,157.9,100,inferred-lossless,gamma4; 2.26x vs base
+gemma-12B,12B-dense,fp8,AR,118.7,111.6,100,measured,
+gemma-12B,12B-dense,fp8,MTP,200.7,178.6,100,inferred-lossless,gamma4; 1.69x vs base
+qwen3.6-35B-A3B,3B-MoE,fp8,AR,216.7,204.0,83.3,measured-bench_acc2,
+qwen3.6-35B-A3B,3B-MoE,fp8,MTP-g1,240.4,241.5,83.3,inferred-lossless,gamma1; 1.11x
+qwen3.6-35B-A3B,3B-MoE,fp8,MTP-g2,315.6,,83.3,inferred-lossless,gamma2; 1.46x
+qwen3.6-27B,27B-mamba-hybrid,fp8,AR,79.2,73.8,90.0,measured-bench_acc2,v0.22.1 + --max-num-seqs 256 (Mamba cache blocks)
+qwen3.6-27B,27B-mamba-hybrid,fp8,MTP-g2,146.9,141.5,90.0,inferred-lossless,gamma2; 1.85x; slow init ~366s

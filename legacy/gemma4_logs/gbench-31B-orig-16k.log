@@ -1,0 +1,14 @@
+[14:07:51] ===== 31B-orig-16k : google/gemma-4-31B-it (spec=none image=vllm/vllm-openai:nightly) =====
+[14:07:51]   loading...
+[14:13:55]   HEALTHY (73x5s)
+[14:13:55]   KV_total=42586  (Maximum concurrency for 16,384 tokens per request: 2.60x)
+73712 MiB
+[31B-orig-16k] model=google/gemma-4-31B-it KV_total=42586 temp=0 max_tok=1024
+  [ctx=8K single] ptok=8005 TTFT=5458ms decode_tok/s=22.8 out=784
+  [ctx=8K conc=6] done=6/6 agg_out_tok/s=54.9 wall=89.9s lat_avg=62076ms lat_p99=89906ms
+  [ctx=123K single] ptok=None TTFT=-1ms decode_tok/s=0.0 out=None
+  [ctx=123K conc=2] ALL FAILED (HTTP Error 400: Bad Request)
+  [spec] non-MTP
+[14:16:07]   stopped, GPU 해제 대기...
+[14:16:07]   GPU freed (0MB)
+[14:16:07] ######## 31B-orig-16k DONE ########

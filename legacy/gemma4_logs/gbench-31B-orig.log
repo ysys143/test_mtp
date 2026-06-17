@@ -1,0 +1,9 @@
+[13:19:01] ===== 31B-orig : google/gemma-4-31B-it (spec=none image=vllm/vllm-openai:nightly) =====
+[13:19:02]   loading...
+[13:26:17]   DIED
+(EngineCore pid=96) ERROR 06-11 13:26:07 [core.py:1195] ValueError: To serve at least one request with the model's max seq len (131072), (12.7 GiB KV cache is needed, which is larger than the available KV cache memory (10.26 GiB). Based on the available memory, the estimated maximum model length is 99136. Try increasing `gpu_memory_utilization` (which also controls CPU memory on the CPU backend) or decreasing `max_model_len` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details.
+(EngineCore pid=96)     raise e
+(EngineCore pid=96)     raise ValueError(
+(EngineCore pid=96) ValueError: To serve at least one request with the model's max seq len (131072), (12.7 GiB KV cache is needed, which is larger than the available KV cache memory (10.26 GiB). Based on the available memory, the estimated maximum model length is 99136. Try increasing `gpu_memory_utilization` (which also controls CPU memory on the CPU backend) or decreasing `max_model_len` when initializing the engine. See https://docs.vllm.ai/en/latest/configuration/conserving_memory/ for more details.
+(APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

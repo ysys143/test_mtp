@@ -1,0 +1,14 @@
+[13:30:57] ===== 31B-qat : google/gemma-4-31B-it-qat-w4a16-ct (spec=none image=vllm/vllm-openai:nightly) =====
+[13:30:57]   loading...
+[13:38:22]   HEALTHY (89x5s)
+[13:38:22]   KV_total=508915  (Maximum concurrency for 131,072 tokens per request: 3.88x)
+73762 MiB
+[31B-qat] model=google/gemma-4-31B-it-qat-w4a16-ct KV_total=508915 temp=0 max_tok=1024
+  [ctx=8K single] ptok=8005 TTFT=5955ms decode_tok/s=52.8 out=751
+  [ctx=8K conc=70] done=70/70 agg_out_tok/s=160.6 wall=384.6s lat_avg=300029ms lat_p99=384541ms
+  [ctx=123K single] ptok=122994 TTFT=193009ms decode_tok/s=30.8 out=1022
+  [ctx=123K conc=5] done=5/5 agg_out_tok/s=3.9 wall=1043.4s lat_avg=961356ms lat_p99=1043361ms
+  [spec] non-MTP
+[14:06:18]   stopped, GPU 해제 대기...
+[14:06:18]   GPU freed (0MB)
+[14:06:18] ######## 31B-qat DONE ########

@@ -1,0 +1,26 @@
+[08:33:55] ######## MTP COMPARISON v2 (temp=0 + concurrency): Qwen3.6-35B-A3B-FP8 ########
+[08:33:55] ===== PHASE: NO-MTP (USE_MTP=0) =====
+[08:33:55]   waiting for vLLM health...
+[08:38:40]   READY (58x5s)
+74550 MiB
+[NO-MTP] temp=0, max_tok=512, ~3904 input tokens
+  [single] TTFT avg=534ms  TTLP avg=3717ms  tok/s avg=160.9  out=512
+  [conc=8] agg_tok/s=446.3  TTFT avg=2338ms  TTLP avg=9077ms  wall=9.2s  total_out=4096
+  [conc=16] agg_tok/s=554.7  TTFT avg=4238ms  TTLP avg=14494ms  wall=14.8s  total_out=8192
+  [spec] no spec-decode metrics (MTP off)
+[08:39:24]   waiting for GPU release...
+[08:39:24]   GPU freed (0MB)
+[08:39:24] 
+[08:39:24] ===== PHASE: MTP (USE_MTP=1) =====
+[08:39:24]   waiting for vLLM health...
+[08:42:45]   READY (41x5s)
+75130 MiB
+[MTP] temp=0, max_tok=512, ~3904 input tokens
+  [single] TTFT avg=556ms  TTLP avg=4584ms  tok/s avg=70.0  out=285
+  [conc=8] agg_tok/s=160.0  TTFT avg=5376ms  TTLP avg=13378ms  wall=14.0s  total_out=2241
+  [conc=16] agg_tok/s=259.3  TTFT avg=5003ms  TTLP avg=16750ms  wall=17.2s  total_out=4472
+  [spec] accepted=6497 draft=7816 acceptance=83.1%
+[08:43:37]   waiting for GPU release...
+[08:43:37]   GPU freed (0MB)
+[08:43:37] 
+[08:43:37] ######## DONE ########

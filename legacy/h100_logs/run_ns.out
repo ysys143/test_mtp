@@ -1,0 +1,9 @@
+/home/opscheck/run_ns.sh: line 3: 96432 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[fp8-base] model=google/gemma-4-31B-it decode_tok/s=68.4 (out=512, prefill=24ms) NON-MTP
+/home/opscheck/run_ns.sh: line 3: 97965 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[fp8-mtp] model=google/gemma-4-31B-it decode_tok/s=200.3 acceptance=61.3% (out=512, prefill=35ms)
+/home/opscheck/run_ns.sh: line 3: 99797 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[qat-base] model=google/gemma-4-31B-it-qat-w4a16-ct decode_tok/s=89.8 (out=512, prefill=23ms) NON-MTP
+/home/opscheck/run_ns.sh: line 3: 101375 Killed                  sudo pkill -9 -f 'VLLM::EngineCore' 2> /dev/null
+[qat-mtp] model=google/gemma-4-31B-it-qat-w4a16-ct decode_tok/s=235.0 acceptance=56.0% (out=512, prefill=31ms)
+######## NS DONE ########

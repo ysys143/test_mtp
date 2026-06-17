@@ -1,0 +1,14 @@
+[13:00:31] ===== 26B-diffusion : google/diffusiongemma-26B-A4B-it (spec=none image=vllm/vllm-openai:gemma) =====
+[13:00:31]   loading...
+[13:08:19]   HEALTHY (93x5s)
+[13:08:19]   KV_total=943531  (Maximum concurrency for 131,072 tokens per request: 7.20x)
+78372 MiB
+[26B-diffusion] model=google/diffusiongemma-26B-A4B-it KV_total=943531 temp=0 max_tok=1024
+  [ctx=8K single] ptok=8005 TTFT=12167ms decode_tok/s=1.8 out=3
+  [ctx=8K conc=128] ALL FAILED (HTTP Error 500: Internal Server Error)
+  [ctx=123K single] ptok=None TTFT=-1ms decode_tok/s=0.0 out=None
+  [ctx=123K conc=8] ALL FAILED (<urlopen error [Errno 32] Broken pipe>)
+  [spec] non-MTP
+[13:09:03]   stopped, GPU 해제 대기...
+[13:09:04]   GPU freed (0MB)
+[13:09:04] ######## 26B-diffusion DONE ########

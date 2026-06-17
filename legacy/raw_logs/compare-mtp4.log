@@ -1,0 +1,26 @@
+[09:25:50] ######## DENSE 27B-FP8 GAMMA SWEEP ########
+[09:25:50] ===== PHASE: MTP-g2 (USE_MTP=1, GAMMA=2) =====
+[09:25:50]   waiting for vLLM health...
+[09:29:05]   READY (40x5s)
+75026 MiB
+[MTP-g2] model=Qwen/Qwen3.6-27B-FP8 temp=0 max_tok=512 ~3904 input tokens
+  [single] TTFT avg=2414ms  TTLP avg=9150ms  tok/s avg=31.3  out=213
+  [conc=8] agg_tok/s=53.7  TTFT avg=13176ms  TTLP avg=29805ms  wall=30.6s total_out=1646
+  [conc=16] agg_tok/s=60.8  TTFT avg=22749ms  TTLP avg=52312ms  wall=53.6s total_out=3256
+  [spec] accepted=8614 draft=11440 acceptance=75.3%
+[09:31:08]   waiting for GPU release...
+[09:31:08]   GPU freed (0MB)
+[09:31:08] 
+[09:31:08] ===== PHASE: MTP-g3 (USE_MTP=1, GAMMA=3) =====
+[09:31:08]   waiting for vLLM health...
+[09:34:23]   READY (40x5s)
+74850 MiB
+[MTP-g3] model=Qwen/Qwen3.6-27B-FP8 temp=0 max_tok=512 ~3904 input tokens
+  [single] TTFT avg=2424ms  TTLP avg=8167ms  tok/s avg=30.3  out=173
+  [conc=8] agg_tok/s=47.4  TTFT avg=13084ms  TTLP avg=29055ms  wall=29.9s total_out=1418
+  [conc=16] agg_tok/s=51.9  TTFT avg=22936ms  TTLP avg=51858ms  wall=53.2s total_out=2761
+  [spec] accepted=9494 draft=14538 acceptance=65.3%
+[09:36:21]   waiting for GPU release...
+[09:36:21]   GPU freed (0MB)
+[09:36:21] 
+[09:36:21] ######## DONE ########

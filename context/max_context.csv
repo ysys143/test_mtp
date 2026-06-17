@@ -1,0 +1,15 @@
+model,precision,image,kv_dtype,max_stable_ctx,kv_capacity_tokens,native_max,niah_pass,notes
+gemma-26B-A4B,bf16,nightly,auto,262144,971213,262144,infer-rep,sliding-window 1024; rep=26B-fp8 3/3@241K
+gemma-26B-A4B,fp8,nightly,auto,262144,1853845,262144,3/3@241K,
+gemma-26B-A4B,int8,nightly,auto,262144,1792433,262144,infer-rep,int8 MoE-experts 양자화 효과(KV 0.97M->1.79M)
+gemma-31B,bf16,nightly,auto,95808,,262144,n/a,auto-KV는 ~94K OOM (capped); kv-fp8 행 참조
+gemma-31B,bf16,nightly,fp8,262144,278283,262144,3/3@241K,fp8 KV가 네이티브 256K 잠금해제
+gemma-31B,fp8,nightly,auto,262144,404729,262144,infer-rep,rep=12B-fp8/31B-bf16-kvfp8
+gemma-31B,int8,nightly,auto,95808,,262144,n/a,int8 flag MoE-only(linear=None) -> dense no-op =bf16
+gemma-31B,int8,nightly,fp8,262144,278283,262144,n/a,dense int8 no-op이라 =31B-bf16-kvfp8
+gemma-31B,qat-w4a16,nightly,auto,262144,519318,262144,infer-rep,4bit 가중치
+gemma-12B,bf16,nightly,auto,262144,1960653,262144,infer-rep,
+gemma-12B,fp8,nightly,auto,262144,2345364,262144,3/3@241K,
+gemma-12B,int8,nightly,auto,262144,1960653,262144,n/a,int8 flag no-op (weights 22.83GiB=bf16); dense=bf16
+qwen3.6-35B-A3B,fp8,nightly,auto,262144,1995207,262144,3/3@241K,gated-delta linear-attn hybrid 3:1 + MoE (1/4층만 full-attn -> KV작음)
+qwen3.6-27B,fp8,v0.22.1,auto,262144,715079,262144,3/3@241K,gated-delta linear-attn hybrid 3:1 (dense); --max-num-seqs<=783
