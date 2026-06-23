@@ -105,7 +105,7 @@ ax.tick_params(which="minor", length=0)
 for s in ax.spines.values():
     s.set_visible(False)
 
-ax.set_title("MTP / diffusion bench  —  speed + accuracy heatmap\n"
+ax.set_title("MTP / diffusion bench  —  speed + accuracy heatmap   (single H100 80GB)\n"
              "darker = higher  ·  speed: shared log scale (compare across)  ·  "
              "accuracy: per-column scale (compare down only)",
              fontsize=10.5, pad=52)
