@@ -2,7 +2,7 @@
 
 이 문서는 Gemma 4와 Qwen 3.6을 단일 H100 80GB에서 동일한 조건으로 측정해, 추론 가속 기법인 MTP(speculative decoding)와 diffusion이 속도와 정확도를 얼마나 바꾸는지 정리한 벤치마크다. 가속이 속도를 얼마나 올리고, 그 대가로 정확도가 얼마나 깎이는지를 본다. 변인을 줄이려고 양자화·컨텍스트·thinking은 같은 조건으로 고정했고, 결과는 속도·정확도·메모리를 함께 놓고 비교한다.
 
-측정은 끝났으며 자세한 내용은 [report/](report/README.md)(프로토콜·시행착오·결과·재현·2부리그)에 정리돼 있다. 이 README는 그 요약이다. 초기 Phase 문서는 [legacy/phase-docs/](legacy/phase-docs/)에 보관했다.
+자세한 내용은 [report/](report/README.md)(프로토콜·시행착오·결과·재현·2부리그)에 있고, 이 README는 그 요약이다. 초기 Phase 문서는 [legacy/phase-docs/](legacy/phase-docs/)에 보관했다.
 
 대상 모델은 Gemma 4(12B·26B-A4B·31B·diffusiongemma)와 Qwen 3.6(27B·35B-A3B)이다. 정밀도·추론기법·컨텍스트를 바꿔 가며 측정했고, 정확도는 thinking을 켠 동일 조건에서 lm-eval·inspect_ai·HRET 세 프레임워크로 교차 확인했다.
 
