@@ -10,11 +10,7 @@
 
 ## 1부 — 통합 결과표 (Gemma 4 / Qwen 3.6)
 
-한 행 = (모델 × 정밀도 × 기법). AR/MTP/diffusion 독립 행. 해석·축별 슬라이스는 [report/03](report/03-결과와해석.md), 전 수치 근거 [results_consolidated.csv](results_consolidated.csv).
-
-> 범례 — 속도=tok/s(short/8K), MTP 행 괄호=AR 대비 speedup · 6지표=accuracy(1.0) · MTP 행은 속도+GPQA(lm/insp)만 측정(나머지 4지표 —) · **†**=eager 폴백(공정 속도 아님, 단일 H100 메모리 제약).
-
-| 모델 | 정밀도 | 기법 | 속도 s/8K | lm-GPQA | insp-GPQA | MMLU-Pro | IFEval | haerae | KMMLU | NIAH |
+| 모델 | 정밀도 | 기법 | 속도 short/8K | lm-GPQA | insp-GPQA | MMLU-Pro | IFEval | haerae | KMMLU | NIAH |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | **Gemma 12B** dense | bf16 | AR | 82/78 | 0.662 | 0.652 | 0.788 | 0.913 | 0.832 | 0.596 | — |
 |  |  | MTP | 184/148 (2.24×) | 0.657 | 0.611 | — | — | — | — | — |
@@ -45,7 +41,13 @@
 |  | bf16 | diff | 616/372 | 0.596 | 0.631 | 0.738 | 0.893 | 0.848 | 0.576 | — |
 |  | int8 | diff | 759/510 | 0.576 | 0.672 | 0.744 | 0.897 | 0.85 | 0.544 | — |
 
-¹ 31B-bf16+MTP는 드래프터+KV가 단일 H100 80GB에 안 들어가 측정 불가. ² diffusion NIAH는 depth 90% 실패로 2/3. NIAH "—"행은 동일 아키텍처 대표셀로 검증 대체.
+**표 보는 법**
+- **속도 short/8K**: throughput(tok/s)을 두 조건으로 적었다. 앞 숫자는 짧은 프롬프트, 뒤 숫자는 8K 컨텍스트 입력 기준이다. 예를 들어 `82/78`은 각각 82·78 tok/s.
+- **MTP 행의 괄호**: AR 대비 속도 배수(speedup). 예: `184/148 (2.24×)`.
+- **정확도 6지표**(lm-GPQA·insp-GPQA·MMLU-Pro·IFEval·haerae·KMMLU): 0~1.0 정답률.
+- **MTP 행**은 속도와 GPQA(lm/insp)만 쟀다. 나머지 네 지표(`—`)는 AR과 같다고 보고 생략했다.
+- **†**: eager로 폴백돼 공정한 속도가 아니다(가중치 70GB가 단일 H100 80GB에서 CUDA graph를 못 올림). 정확도만 유효하다.
+- **¹** 31B-bf16+MTP는 드래프터와 KV가 H100 80GB에 안 들어가 측정하지 못했다. **²** diffusion의 NIAH는 depth 90%에서 실패해 2/3이다. NIAH의 `—` 행은 같은 아키텍처의 대표 셀로 갈음했다.
 
 **한 눈 요약:** 정밀도를 바꿔도 6지표 거의 불변(양자화 무손실) · MTP 행은 AR 대비 1.4~2.6×(dense>MoE)인데 GPQA는 ±0.05 노이즈 · NIAH AR 3/3 vs diffusion 2/3.
 
