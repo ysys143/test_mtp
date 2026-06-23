@@ -4,6 +4,8 @@
 
 Gemma 4(12B·26B-A4B·31B·diffusiongemma)·Qwen 3.6(27B·35B-A3B)을 단일 H100 80GB에서 정밀도 × 추론기법 × 컨텍스트로 측정했습니다. 정확도는 thinking-on 동등조건 하에 측정했습니다.
 
+**2부 리그(신규 6모델 경량 평가)** → [report/05-2부리그.md](report/05-2부리그.md): EXAONE-4.5·Nex-N2가 지식·한국어 1부급(GPQA는 중간), VibeThinker-3B는 STEM 추론만 30B급, Claude-distill은 base보다 하락. gemma-coder는 vLLM GGUF 미지원으로 제외.
+
 ## 통합 결과표 (마스터)
 
 한 행 = (모델 × 정밀도 × 기법). AR/MTP/diffusion을 각각 독립 행으로 둔다. 해석·조각 인용은 [report/03-결과와해석.md](report/03-결과와해석.md), 전 수치 근거는 [results_consolidated.csv](results_consolidated.csv)를 참고하세요.
