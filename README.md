@@ -56,7 +56,7 @@
 <details>
 <summary><b>2026 신규 6종 결과 펼치기</b> — 서드파티·distill·finetune (GPQA + MMLU-Pro + KMMLU, thinking-on·fp8). 상세: <a href="report/05-2부리그.md">report/05</a></summary>
 
-| 모델 | 종류 | 속도 s/8K | GPQA | MMLU-Pro | KMMLU |
+| 모델 | 종류 | 속도 short/8K | GPQA | MMLU-Pro | KMMLU |
 |---|---|---:|---:|---:|---:|
 | **Nex-N2-mini** | 35B 하이브리드(agentic) | 211/199 | **0.747** | 0.836 | 0.634 |
 | **EXAONE-4.5-33B** | dense VL (LG) | 70/64 | 0.556 | **0.858** | **0.675** |
