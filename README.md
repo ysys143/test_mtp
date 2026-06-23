@@ -10,14 +10,15 @@
 
 ## 한눈에 — 속도 + 정확도 히트맵
 
-![속도+정확도 히트맵](report/heatmap.png?v=4)
+![속도+정확도 히트맵](report/heatmap.png?v=5)
 
-진할수록 상위. **두 그룹은 척도가 다르다.** 속도 4열(base S/8K·MTP S/8K)은 같은 tok/s 단위라 **공통 로그 척도**로 묶어 가로 비교가 되고(MTP 열이 base보다 진해지면 가속, 8K가 short보다 옅으면 긴 문맥 감속), 정확도 6열은 단위·동적범위가 제각각이라 **열별 min–max 독립 정규화**라 세로로만 읽는다(같은 진한 셀이라도 IFEval 0.94와 lm-GPQA 0.85는 절대값이 다름). base는 그 행의 기본 기법(AR, Gemma4 diff 행은 diffusion), `n/a`는 측정불가/해당없음(eager 폴백 비공정 속도 포함). 행은 Gemma 4 → Qwen 3.6 패밀리로 묶었다. 재현 스크립트는 [report/make_heatmap.py](report/make_heatmap.py).
+진할수록 상위. **두 그룹은 척도가 다르다.** 속도 4열(base S/8K·MTP S/8K)은 같은 tok/s 단위라 **공통 로그 척도**로 묶어 가로 비교가 되고(MTP 열이 base보다 진해지면 가속, 8K가 short보다 옅으면 긴 문맥 감속), 정확도 6열은 단위·동적범위가 제각각이라 **열별 min–max 독립 정규화**라 세로로만 읽는다(같은 진한 셀이라도 IFEval 0.94와 lm-GPQA 0.85는 절대값이 다름). base는 그 행의 기본 기법(AR, Gemma4 diff 행은 diffusion), `n/a`는 측정불가/해당없음(eager 폴백 비공정 속도 포함). 행은 Gemma 4 → Qwen 3.6 패밀리로 묶었고, **굵은 선 아래는 2부 경량 평가**(Nex-N2-mini·EXAONE-4.5)다 — fp8·thinking-on, 부분 지표(GPQA·MMLU-Pro·KMMLU만 측정, 나머지 n/a)라 1부와 동급 비교가 아닌 참고용이다. 재현 스크립트는 [report/make_heatmap.py](report/make_heatmap.py).
 
 - **Gemma4 diff: 속도 진함·정확도 옅음** — 가장 빠르지만 하드추론·지식이 일관되게 바닥(haerae만 중간). 4배 속도의 대가가 한 행에 그려진다.
 - **Gemma 31B·Qwen 27B: 속도 옅음·정확도 진함** — 정반대 극(dense 최상위 정확도, 느림).
 - **양자화 무손실**: 같은 모델의 bf16·fp8·int8·qat 행이 정확도 6열에서 거의 같은 색.
 - **Qwen 35B-A3B: GPQA/MMLU 진함·haerae/KMMLU 옅음** — 추론 최상위·한국어 약점.
+- **2부 Nex-N2-mini·EXAONE-4.5(참고)**: 경량인데 지식(MMLU-Pro)·한국어(KMMLU)는 1부 최상위급으로 진하다. 단 EXAONE은 lm-GPQA(하드추론)가 옅고 속도도 dense급(70 tok/s)으로 느리다.
 
 ## 1부 — 통합 결과표 (Gemma 4 / Qwen 3.6)
 

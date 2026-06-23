@@ -35,7 +35,11 @@ rows = [
     ("Qwen3.6 27B bf16",  [48, 45, N, N],       [0.798, 0.848, 0.856, 0.939, 0.846, 0.628]),
     ("Qwen3.6 27B fp8",   [79, 74, 147, 142],   [0.828, 0.854, 0.846, 0.925, 0.850, 0.634]),
     ("Qwen3.6 27B int8",  [48, 45, N, N],       [0.818, 0.874, 0.868, 0.932, 0.854, 0.658]),
+    # 2부 경량 평가(fp8, thinking-on, 부분 지표): GPQA·MMLU-Pro·KMMLU만
+    ("Nex-N2-mini 35B fp8",   [211, 199, N, N], [0.747, N, 0.836, N, N, 0.634]),
+    ("EXAONE-4.5-33B fp8",    [70, 64, N, N],   [0.556, N, 0.858, N, N, 0.675]),
 ]
+N_PART1 = 16  # 1부 행 수(아래는 2부 참고 블록)
 spd_cols = ["base S", "base 8K", "MTP S", "MTP 8K"]
 acc_cols = ["lm-GPQA", "insp-GPQA", "MMLU-Pro", "IFEval", "haerae", "KMMLU"]
 cols = spd_cols + acc_cols
@@ -46,7 +50,7 @@ for i, (_, s, a) in enumerate(rows):
     for j, v in enumerate(s):
         raw[i, j] = np.nan if v is None else v
     for j, v in enumerate(a):
-        raw[i, 4 + j] = v
+        raw[i, 4 + j] = np.nan if v is None else v
 
 # 0..1 정규화 행렬
 norm = np.full_like(raw, np.nan)
@@ -66,7 +70,7 @@ for j in range(4, ncol):
 cmap = LinearSegmentedColormap.from_list("kblue", ["#f7fbff", "#9ecae1", "#3182bd", "#08306b"])
 cmap.set_bad("#e8e8e8")  # NA 셀
 
-fig, ax = plt.subplots(figsize=(11, 8.2))
+fig, ax = plt.subplots(figsize=(11, 9.2))
 masked = np.ma.masked_invalid(norm)
 ax.imshow(masked, cmap=cmap, aspect="auto", vmin=0, vmax=1)
 
@@ -89,12 +93,16 @@ ax.set_yticklabels([r[0] for r in rows], fontsize=8.5)
 ax.tick_params(top=True, labeltop=True, bottom=False, labelbottom=False)
 plt.setp(ax.get_xticklabels(), rotation=0, ha="center")
 
-# 그룹 경계선: 속도|정확도(세로), Gemma|Qwen(가로)
+# 그룹 경계선: 속도|정확도(세로), Gemma|Qwen(가로), Qwen|2부(가로, 굵게)
 ax.axvline(3.5, color="#444", lw=2)
 ax.axhline(11.5, color="#444", lw=2)
+ax.axhline(N_PART1 - 0.5, color="#444", lw=3)  # 1부 | 2부 참고 블록
 # 그룹 헤더 (수평 열 라벨 바로 위)
 ax.text(1.5, -1.55, "Speed  (log, shared scale)", ha="center", fontsize=9.5, weight="bold")
 ax.text(6.5, -1.55, "Accuracy  (per-column scale)", ha="center", fontsize=9.5, weight="bold")
+# 2부 블록 라벨(오른쪽 끝)
+ax.text(ncol - 0.4, (N_PART1 + nrow - 1) / 2, "part 2\n(light)", ha="left", va="center",
+        fontsize=8, color="#666", weight="bold")
 
 ax.set_xticks(np.arange(-0.5, ncol, 1), minor=True)
 ax.set_yticks(np.arange(-0.5, nrow, 1), minor=True)
@@ -107,7 +115,12 @@ ax.set_title("MTP / diffusion bench  —  speed + accuracy heatmap   (single H10
              "darker = higher  ·  speed: shared log scale (compare across)  ·  "
              "accuracy: per-column scale (compare down only)",
              fontsize=10.5, pad=58)
-fig.tight_layout()
+fig.text(0.5, 0.02,
+         "part 2 (below line): lightweight eval — fp8, thinking-on, partial metrics "
+         "(GPQA / MMLU-Pro / KMMLU only; MTP·insp-GPQA·IFEval·haerae not measured).  "
+         "EXAONE MMLU-Pro/KMMLU N=200, others N=500.",
+         ha="center", fontsize=7.5, color="#666")
+fig.tight_layout(rect=[0, 0.035, 1, 1])
 out = "report/heatmap.png"
 fig.savefig(out, dpi=160, bbox_inches="tight", facecolor="white")
 print("saved", out)
