@@ -10,7 +10,7 @@
 
 ## 한눈에 — 속도 + 정확도 히트맵
 
-![속도+정확도 히트맵](report/heatmap.png)
+![속도+정확도 히트맵](report/heatmap.png?v=2)
 
 진할수록 상위. **두 그룹은 척도가 다르다.** 속도 4열(base S/8K·MTP S/8K)은 같은 tok/s 단위라 **공통 로그 척도**로 묶어 가로 비교가 되고(MTP 열이 base보다 진해지면 가속, 8K가 short보다 옅으면 긴 문맥 감속), 정확도 6열은 단위·동적범위가 제각각이라 **열별 min–max 독립 정규화**라 세로로만 읽는다(같은 진한 셀이라도 IFEval 0.94와 lm-GPQA 0.85는 절대값이 다름). base는 그 행의 기본 기법(AR, Gemma4 diff 행은 diffusion), `n/a`는 측정불가/해당없음(eager 폴백 비공정 속도 포함). 행은 Gemma 4 → Qwen 3.6 패밀리로 묶었다. 재현 스크립트는 [report/make_heatmap.py](report/make_heatmap.py).
 
